@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колледж</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Колледж</h1>
+        <button type="button" onclick="loadStudents()">Студенты</button>
+        <button type="button" onclick="loadGroups()">Группы</button>
+    </header>
+
+    <main>
+        <p id="gr" role="status" aria-live="polite"></p>
+        <table id="studentsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Возраст</th>
+                </tr>
+            </thead>
+            <tbody id="studentBody"></tbody>
+        </table>
+
+        <table id="groupsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Группа</th>
+                </tr>
+            </thead>
+            <tbody id="groupBody"></tbody>
+        </table>
+
+        <section>
+            <h2>Добавить группу</h2>
+            <form>
+                <label>
+                    Имя группы
+                    <input id="nameGroup" type="text" maxlength="20" required placeholder="РПО-1" />
+                </label>
+
+            </form>
+
+            <button type="button" onclick="addGroup()"> Добавить группу </button>
+        </section>
+
+        <section>
+            <h2>Добавить студента</h2>
+            <form>
+                <label>
+                    Имя студента
+                    <input id="firstNameStudent" type="text" maxlength="50" required placeholder="Иван" />
+                </label>
+                <label>
+                    Фамилия студента
+                    <input id="lastNameStudent" type="text" maxlength="50" required placeholder="Иванов" />
+                </label>
+                <label>
+                    Возраст студента
+                    <input id="ageStudent" type="number" min="1" max="120" step="1" required placeholder="18" />
+                </label>
+                <label>
+                    Группа студента
+                    <input id="groupId" type="number" min="1" step="1" required placeholder="1" />
+                </label>
+            </form>
+
+            <button type="button" onclick="addStudent()"> Добавить </button>
+        </section>
+
+        <section>
+            <h2>Изменить студента</h2>
+            <form>
+                <label>
+                    ID
+                    <input id="idStudentUpdate" type="number" min="1" step="1" required placeholder="введите id студента" />
+                </label>
+                <label>
+                    Имя студента
+                    <input id="firstNameUpdate" type="text" maxlength="50" required placeholder="Иван" />
+                </label>
+                <label>
+                    Фамилия студента
+                    <input id="lastNameUpdate" type="text" maxlength="50" required placeholder="Иванов" />
+                </label>
+                <label>
+                    Возраст студента
+                    <input id="ageUpdate" type="number" min="1" max="120" step="1" required placeholder="18" />
+                </label>
+                <label>
+                    Группа студента
+                    <input id="groupIdUpdate" type="number" min="1" step="1" required placeholder="1" />
+                </label>
+            </form>
+
+            <button type="button" onclick="updateStudent()"> Сохранить </button>
+        </section>
+
+        <section>
+            <form>
+                <label>
+                    Удалить студента по ID
+                    <input id="idStudentDelete" type="number" min="1" step="1" required placeholder="введите id студента" />
+                </label>
+                <button type="button" onclick="deleteStudent()"> Удалить </button>
+            </form>
+        </section>
+    </main>
+
+
+
+    <script src="/js/routers.js"></script>
+</body>
+</html>

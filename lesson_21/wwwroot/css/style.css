@@ -1,0 +1,56 @@
+/* Простой светлый интерфейс без библиотек. */
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background: #f4f6f9;
+    color: #283447;
+    font: 16px/1.5 Arial, sans-serif;
+}
+header {
+    padding: 24px max(24px, calc((100% - 1040px) / 2));
+    background: #fff;
+    border-bottom: 1px solid #dce2eb;
+}
+h1 { margin: 0 0 16px; font-size: 28px; }
+h2 { margin: 0 0 20px; font-size: 21px; }
+main { max-width: 1088px; margin: 24px auto; padding: 0 24px 24px; }
+section {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid #dce2eb;
+    border-radius: 8px;
+    background: #fff;
+}
+form { display: flex; flex-wrap: wrap; align-items: end; gap: 16px; }
+label { display: flex; flex: 1 1 170px; flex-direction: column; gap: 8px; }
+input, button { min-height: 44px; font: inherit; border-radius: 6px; }
+input { width: 100%; min-width: 0; padding: 8px 12px; border: 1px solid #929dab; background: #fff; color: #283447; }
+input::placeholder { color: #697585; }
+button { padding: 8px 16px; border: 0; background: #285fc6; color: #fff; cursor: pointer; }
+button:hover { background: #204d9f; }
+button:disabled { opacity: .6; cursor: wait; }
+:focus-visible { outline: 3px solid #285fc6; outline-offset: 3px; }
+header button { margin-right: 8px; background: #edf1f7; color: #34445d; }
+header button:hover { background: #dce5f2; }
+header button.active { background: #285fc6; color: #fff; }
+section > button { margin-top: 16px; }
+section:last-of-type button { background: #a9342c; }
+section:last-of-type button:hover { background: #862820; }
+section:last-of-type form { max-width: 520px; }
+table { width: 100%; margin-bottom: 24px; border-collapse: collapse; background: #fff; }
+th, td { padding: 12px 16px; border-bottom: 1px solid #dce2eb; text-align: left; overflow-wrap: anywhere; }
+th { background: #e9eef7; font-size: 14px; }
+tbody tr:hover { background: #f8faff; }
+#gr { margin: 0 0 24px; padding: 12px 16px; border-radius: 6px; }
+#gr:empty { display: none; }
+.success { background: #e7f2e9; color: #245d36; }
+.error { background: #fff0ee; color: #a12c23; }
+@media (max-width: 600px) {
+    header { padding: 20px; }
+    main { margin-top: 16px; padding: 0 16px 16px; }
+    section { padding: 16px; margin-top: 16px; }
+    form { flex-direction: column; align-items: stretch; }
+    label { flex: auto; }
+    section > button { width: 100%; }
+    th, td { padding: 10px 8px; }
+}

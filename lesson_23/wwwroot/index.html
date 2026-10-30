@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колледж</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Колледж</h1>
+        <button type="button" data-tab="students" onclick="loadStudents()">Студенты</button>
+        <button type="button" data-tab="groups" onclick="loadGroups()">Группы</button>
+        <button type="button" data-tab="teachers" onclick="loadTeachers()">Преподаватели</button>
+        <button type="button" data-tab="subjects" onclick="loadSubjects()">Предметы</button>
+        <button type="button" data-tab="grades" onclick="loadGrades()">Оценки</button>
+    </header>
+
+    <main>
+        <p id="gr" role="status" aria-live="polite"></p>
+        <table id="studentsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Возраст</th>
+                    <th>Группа</th>
+                </tr>
+            </thead>
+            <tbody id="studentBody"></tbody>
+        </table>
+
+        <table id="groupsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Группа</th>
+                </tr>
+            </thead>
+            <tbody id="groupBody"></tbody>
+        </table>
+
+        <table id="teachersTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                </tr>
+            </thead>
+            <tbody id="teacherBody"></tbody>
+        </table>
+
+        <table id="subjectsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Предмет</th>
+                    <th>Преподаватель</th>
+                </tr>
+            </thead>
+            <tbody id="subjectBody"></tbody>
+        </table>
+
+        <table id="gradesTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Студент</th>
+                    <th>Предмет</th>
+                    <th>Оценка</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+            <tbody id="gradeBody"></tbody>
+        </table>
+
+        <section>
+            <h2>Добавить группу</h2>
+            <form>
+                <label>
+                    Имя группы
+                    <input id="nameGroup" type="text" maxlength="20" required placeholder="РПО-1" />
+                </label>
+
+            </form>
+
+            <button type="button" onclick="addGroup()"> Добавить группу </button>
+        </section>
+
+        <section>
+            <h2>Добавить студента</h2>
+            <form>
+                <label>
+                    Имя студента
+                    <input id="firstNameStudent" type="text" maxlength="50" required placeholder="Иван" />
+                </label>
+                <label>
+                    Фамилия студента
+                    <input id="lastNameStudent" type="text" maxlength="50" required placeholder="Иванов" />
+                </label>
+                <label>
+                    Возраст студента
+                    <input id="ageStudent" type="number" min="1" max="120" step="1" required placeholder="18" />
+                </label>
+                <label>
+                    Группа студента
+                    <input id="groupId" type="number" min="1" step="1" required placeholder="1" />
+                </label>
+            </form>
+
+            <button type="button" onclick="addStudent()"> Добавить </button>
+        </section>
+
+        <section>
+            <h2>Изменить студента</h2>
+            <form>
+                <label>
+                    ID
+                    <input id="idStudentUpdate" type="number" min="1" step="1" required placeholder="введите id студента" />
+                </label>
+                <label>
+                    Имя студента
+                    <input id="firstNameUpdate" type="text" maxlength="50" required placeholder="Иван" />
+                </label>
+                <label>
+                    Фамилия студента
+                    <input id="lastNameUpdate" type="text" maxlength="50" required placeholder="Иванов" />
+                </label>
+                <label>
+                    Возраст студента
+                    <input id="ageUpdate" type="number" min="1" max="120" step="1" required placeholder="18" />
+                </label>
+                <label>
+                    Группа студента
+                    <input id="groupIdUpdate" type="number" min="1" step="1" required placeholder="1" />
+                </label>
+            </form>
+
+            <button type="button" onclick="updateStudent()"> Сохранить </button>
+        </section>
+
+        <section>
+            <h2>Добавить преподавателя</h2>
+            <form>
+                <label>
+                    Имя преподавателя
+                    <input id="firstNameTeacher" type="text" maxlength="50" required placeholder="Пётр" />
+                </label>
+                <label>
+                    Фамилия преподавателя
+                    <input id="lastNameTeacher" type="text" maxlength="50" required placeholder="Петров" />
+                </label>
+            </form>
+            <button type="button" onclick="addTeacher()"> Добавить преподавателя </button>
+        </section>
+
+        <section>
+            <h2>Добавить предмет</h2>
+            <form>
+                <label>
+                    Название предмета
+                    <input id="subjectName" type="text" maxlength="100" required placeholder="Базы данных" />
+                </label>
+                <label>
+                    ID преподавателя
+                    <input id="teacherId" type="number" min="1" step="1" required placeholder="1" />
+                </label>
+            </form>
+            <button type="button" onclick="addSubject()"> Добавить предмет </button>
+        </section>
+
+        <section>
+            <h2>Добавить оценку</h2>
+            <form>
+                <label>
+                    ID студента
+                    <input id="gradeStudentId" type="number" min="1" step="1" required placeholder="1" />
+                </label>
+                <label>
+                    ID предмета
+                    <input id="gradeSubjectId" type="number" min="1" step="1" required placeholder="1" />
+                </label>
+                <label>
+                    Оценка
+                    <input id="gradeScore" type="number" min="1" max="5" step="1" required placeholder="5" />
+                </label>
+                <label>
+                    Дата
+                    <input id="gradeDate" type="date" required />
+                </label>
+            </form>
+            <button type="button" onclick="addGrade()"> Добавить оценку </button>
+        </section>
+
+        <section>
+            <form>
+                <label>
+                    Удалить студента по ID
+                    <input id="idStudentDelete" type="number" min="1" step="1" required placeholder="введите id студента" />
+                </label>
+                <button type="button" onclick="deleteStudent()"> Удалить </button>
+            </form>
+        </section>
+    </main>
+
+
+
+    <script src="/js/routers.js"></script>
+</body>
+</html>
